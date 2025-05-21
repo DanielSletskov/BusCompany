@@ -1,0 +1,9 @@
+When testing use the command for unit tests:
+---
+python -m pytest tests/test_price_calculation.py
+---
+
+When test freature BDD test use the command:
+---
+
+
