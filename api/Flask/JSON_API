@@ -1,0 +1,55 @@
+{
+    "info": {
+        "name": "BusCard Price API Test",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "_postman_id": "buscard-price-api-test"
+    },
+    "item": [
+        {
+            "name": "Calculate BusCard Price",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"num_zones\": 3,\n    \"num_people\": 2,\n    \"customer_type\": \"student\"\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:5000/calculate",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "5000",
+                    "path": [
+                        "calculate"
+                    ]
+                }
+            },
+            "response": [],
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "type": "text/javascript",
+                        "exec": [
+                            "pm.test(\"Status code is 200\", function () {",
+                            "    pm.response.to.have.status(200);",
+                            "});",
+                            "",
+                            "pm.test(\"Price is correct\", function () {",
+                            "    var jsonData = pm.response.json();",
+                            "    pm.expect(jsonData.price).to.eql(57.6);",
+                            "});"
+                        ]
+                    }
+                }
+            ]
+        }
+    ]
+}
